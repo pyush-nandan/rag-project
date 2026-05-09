@@ -1,0 +1,62 @@
+# ── Environment & Secrets ──────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python Virtual Environment ─────────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Python Cache & Build Artifacts ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+
+# ── ChromaDB / Vector Store ────────────────────────────────────────────────────
+chroma_db/
+*.sqlite3
+
+# ── Data Files ─────────────────────────────────────────────────────────────────
+data/
+*.pdf
+*.csv
+*.parquet
+
+# ── Test Output ────────────────────────────────────────────────────────────────
+testset_output/
+*.json
+!package.json
+
+# ── IDE & Editor ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── macOS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Logs ───────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Jupyter ────────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Coverage & Testing ─────────────────────────────────────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
