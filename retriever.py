@@ -24,7 +24,7 @@ def get_retriever() -> ContextualCompressionRetriever:
         Document(page_content = text, metadata = meta)
         for text, meta in zip(raw_data["documents"], raw_data["metadatas"])
     ]
-    
+
     ##keyword search
     bm25_retriever = BM25Retriever.from_documents(
         documents = docs,
