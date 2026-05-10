@@ -54,7 +54,7 @@ def ingest_data_and_get_vectorstore() -> Chroma:
         file_path = os.path.join("data", file_name)
         existing = vectorstore._collection.get(where={"source": file_path})
         if existing["ids"]:
-            print(f"{file_name} already ingested. Skipping!")
+            # print(f"{file_name} already ingested. Skipping!")
             continue
         else:
             pages = PyPDFLoader(file_path).load()
