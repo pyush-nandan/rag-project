@@ -26,8 +26,8 @@ chroma_db/
 *.sqlite3
 
 # ── Data Files ─────────────────────────────────────────────────────────────────
-data/
-*.pdf
+# data/
+# *.pdf
 #*.csv
 evaluation_results.csv
 *.parquet
