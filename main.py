@@ -46,6 +46,10 @@ def run_rag():
         more_questions = input("\n\nDo you want to ask more questions (y/n): ")
         if more_questions.lower() == "n":
             flag = False
+        elif more_questions.lower() == "y":
+            flag = True
+        else:
+            print("Invalid input. Please try again.")
 
 if __name__ == "__main__":
     run_rag()
