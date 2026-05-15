@@ -1,0 +1,1 @@
+Built a Production-grade RAG system for Indian Legal Case Law using LangChain, ChromaDB and RAGAS.
