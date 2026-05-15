@@ -40,12 +40,12 @@ def run_rag():
         for i, doc in enumerate(response["context"]):
             print(f"Chunk {i+1}: {doc.page_content}")
             print("---")
-    print("\n\n\n -----------Answer----------- \n\n\n")
-    print(response["answer"])
+        print("\n\n\n -----------Answer----------- \n\n\n")
+        print(response["answer"])
 
-    more_questions = input("\n\nDo you want to ask more questions (y/n): ")
-    if more_questions == "n":
-        flag = False
+        more_questions = input("\n\nDo you want to ask more questions (y/n): ")
+        if more_questions.lower() == "n":
+            flag = False
 
 if __name__ == "__main__":
     run_rag()

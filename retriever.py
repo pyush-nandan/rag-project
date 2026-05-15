@@ -1,37 +1,27 @@
+import pickle
+from functools import lru_cache
 from dotenv import load_dotenv
 from langchain_classic.retrievers.contextual_compression import ContextualCompressionRetriever
 from langchain_community.retrievers import BM25Retriever
 from langchain_classic.retrievers import EnsembleRetriever
 from langchain_cohere import CohereRerank
 from langchain_core.documents import Document
-from ingest_data import ingest_data_and_get_vectorstore
+from ingest_data import ingest_new_data
 
 load_dotenv()
 
-def preprocess_text(text: str) -> list[str]:
-    return text.lower().split()
-
+@lru_cache(maxsize=1)
 def get_retriever() -> ContextualCompressionRetriever:
-    vectorstore = ingest_data_and_get_vectorstore()
+    vectorstore = ingest_new_data()
     ##semantic search
     vector_retriever = vectorstore.as_retriever(
         search_type = "similarity",
         search_kwargs = {"k" : 10}
     )
 
-    raw_data = vectorstore._collection.get()
-    docs = [
-        Document(page_content = text, metadata = meta)
-        for text, meta in zip(raw_data["documents"], raw_data["metadatas"])
-    ]
-
     ##keyword search
-    bm25_retriever = BM25Retriever.from_documents(
-        documents = docs,
-        bm25_params={"k1" : 1.2, "b" : 0.75},
-        k = 10,
-        preprocess_func = preprocess_text
-    )
+    with open("bm25_retriever.pkl", "rb") as f:
+        bm25_retriever = pickle.load(f)
 
     ##hybrid search
     hybrid_retriever = EnsembleRetriever(

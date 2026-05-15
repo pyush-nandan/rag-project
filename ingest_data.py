@@ -3,8 +3,10 @@ import re
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
+from langchain_community.retrievers import BM25Retriever
+import pickle
 
 
 Judgement_splitter = RecursiveCharacterTextSplitter(
@@ -37,10 +39,8 @@ def _clean_text(text : str) -> str:
 
     return text.strip()
 
-
-def ingest_data_and_get_vectorstore() -> Chroma:
-
-    embedding_model = SentenceTransformerEmbeddings(
+def init_vectorstore():
+    embedding_model = HuggingFaceEmbeddings(
         model_name = "all-MiniLM-L6-v2"
     )
 
@@ -50,6 +50,12 @@ def ingest_data_and_get_vectorstore() -> Chroma:
         persist_directory = "./chroma_db"
     )
 
+    return vectorstore
+
+def ingest_new_data():
+    vectorstore = init_vectorstore()
+    new_data_added = False
+
     for file_name in os.listdir("data"):
         file_path = os.path.join("data", file_name)
         existing = vectorstore._collection.get(where={"source": file_path})
@@ -57,6 +63,7 @@ def ingest_data_and_get_vectorstore() -> Chroma:
             # print(f"{file_name} already ingested. Skipping!")
             continue
         else:
+            print(f"Adding file {file_name} to vectorstore")
             pages = PyPDFLoader(file_path).load()
             for page in pages:
                 page.page_content = _clean_text(page.page_content)
@@ -78,7 +85,27 @@ def ingest_data_and_get_vectorstore() -> Chroma:
             print(f"Split into {len(chunks)} chunks")
 
             vectorstore.add_documents(chunks)
+            new_data_added = True
             print("Documents added to the vectorstore")   
-            
+
+    if new_data_added or not os.path.exists("bm25_retriever.pkl"):
+        print("Building BM25 Index...")
+        raw_data = vectorstore._collection.get()
+        docs = [
+            Document(page_content=text, metadata=meta)
+            for text, meta in zip(raw_data["documents"], raw_data["metadatas"])
+        ]
+        
+        bm25_retriever = BM25Retriever.from_documents(
+            documents=docs,
+            bm25_params={"k1": 1.2, "b": 0.75},
+            k=10
+        )
+        with open("bm25_retriever.pkl", "wb") as f:
+            pickle.dump(bm25_retriever, f)
+        print("BM25 Index saved.")   
+
     return vectorstore
 
+if __name__ == "__main__":
+    ingest_new_data()
