@@ -149,7 +149,8 @@ def run_evaluation():
     else:
         print(f"Quality Gate Passed: faithfulness {overall_faithfulness:.4f}")
         sys.exit(0)
-
+    
+    #quality gate
 
 if __name__ == "__main__":
     run_evaluation()
