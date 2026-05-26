@@ -142,13 +142,13 @@ def run_evaluation():
     result_df.to_csv("evaluation_results.csv", index=False)
     print("\nResults saved to evaluation_results.csv")
 
-    overall_faithfulness = result_df["faithfulness"].mean()
-    if overall_faithfulness < FAITHFULNESS_THRESHOLD:
-        print(f"Quality Gate failed: faithfulness {overall_faithfulness:.4f} < {FAITHFULNESS_THRESHOLD}")
+    if result["faithfulness"] < FAITHFULNESS_THRESHOLD:
+        print(f"Quality Gate failed: faithfulness {result['faithfulness']:.4f} < {FAITHFULNESS_THRESHOLD}")
         sys.exit(1)
     else:
-        print(f"Quality Gate passed: faithfulness {overall_faithfulness:.4f}")
+        print(f"Quality Gate passed: faithfulness {result['faithfulness']:.4f}")
         sys.exit(0)
+
 
 
 if __name__ == "__main__":
