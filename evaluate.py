@@ -144,12 +144,13 @@ def run_evaluation():
 
     overall_faithfulness = result_df["faithfulness"].mean()
     if overall_faithfulness < FAITHFULNESS_THRESHOLD:
-        print(f"Quality Gate failed: faithfulness {overall_faithfulness:.4f} < {FAITHFULNESS_THRESHOLD}")
+        print(f"Quality Gate Failed: faithfulness {overall_faithfulness:.4f} < {FAITHFULNESS_THRESHOLD}")
         sys.exit(1)
     else:
-        print(f"Quality Gate passed: faithfulness {overall_faithfulness:.4f}")
+        print(f"Quality Gate Passed: faithfulness {overall_faithfulness:.4f}")
         sys.exit(0)
-
+    
+    #quality gate
 
 if __name__ == "__main__":
     run_evaluation()
