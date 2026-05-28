@@ -1,0 +1,48 @@
+# LegalEase — Custom dark theme
+# Deep navy tones with warm gold accents — evokes legal authority and trust
+
+[theme]
+base = "dark"
+primaryColor = "#C9A227"
+backgroundColor = "#0F1419"
+secondaryBackgroundColor = "#1A2332"
+codeBackgroundColor = "#1A2332"
+textColor = "#E8E6E3"
+linkColor = "#D4AF37"
+borderColor = "#2A3A4E"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "8px"
+buttonRadius = "8px"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+codeFontSize = "0.85rem"
+codeTextColor = "#E8E6E3"
+baseFontSize = 14
+baseFontWeight = 400
+headingFontSizes = ["32px", "24px", "20px", "16px", "14px", "12px"]
+headingFontWeights = [700, 600, 600, 500, 500, 500]
+linkUnderline = false
+chartCategoricalColors = ["#C9A227", "#4A90D9", "#6DD49E", "#E07C5A", "#9B8EC4", "#5BC0BE", "#E8C547"]
+
+# Color palette
+blueColor = "#4A90D9"
+greenColor = "#6DD49E"
+yellowColor = "#E8C547"
+orangeColor = "#E07C5A"
+redColor = "#D94F4F"
+violetColor = "#9B8EC4"
+grayColor = "#7A8599"
+
+# Dataframe styling
+dataframeBorderColor = "#2A3A4E"
+dataframeHeaderBackgroundColor = "#1A2332"
+
+[theme.sidebar]
+backgroundColor = "#0B0F14"
+secondaryBackgroundColor = "#141C27"
+codeBackgroundColor = "#141C27"
+textColor = "#E8E6E3"
+borderColor = "#1F2D3D"
+primaryColor = "#C9A227"
