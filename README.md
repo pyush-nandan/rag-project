@@ -242,8 +242,14 @@ If **faithfulness** drops below **0.75**, the pipeline exits with code `1` — b
 ## 🚀 Quick Start
 
 ### Access the Deployed App:
- 
+
 - https://legelease.streamlit.app/
+
+<p align="center">
+  <b>OR</b>
+</p>
+
+### Clone Repository and run locally
 
 ### Prerequisites
 
