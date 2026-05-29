@@ -241,6 +241,10 @@ If **faithfulness** drops below **0.75**, the pipeline exits with code `1` — b
 
 ## 🚀 Quick Start
 
+### Access the Deployed App:
+ 
+- https://legelease.streamlit.app/
+
 ### Prerequisites
 
 - Python 3.11+
